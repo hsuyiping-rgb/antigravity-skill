@@ -1,0 +1,22 @@
+# Google Drive system files
+desktop.ini
+*.tmp
+~$*
+
+# Claude Code / Antigravity local config
+.claude/
+.gemini/
+.env
+*.key
+credentials.*
+
+# Node / Python temp files
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+ENV/
