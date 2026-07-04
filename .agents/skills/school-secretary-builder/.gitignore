@@ -1,7 +1,0 @@
-__pycache__/
-*.pyc
-.DS_Store
-node_modules/
-temp_crawled_data.json
-test_runner.js
-test_dist/
