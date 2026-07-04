@@ -1,7 +1,7 @@
-# 🌌 Antigravity 專用 SOIL 教學簡報技能集 (SOIL Deck Skills)
+# 🌌 Antigravity 專用教學與自動化技能集 (Antigravity Skills)
 
-本專案是專為 **Antigravity** (Gemini AI 助理) 所量身打造的教學簡報製作技能集。
-以李俊儀教授的 **SOIL Teaching Deck Workflow（六大引擎）** 教學設計邏輯為骨架，協助老師或講師將教材與概念轉化為具備教學力的簡報。
+本專案是專為 **Antigravity** (Gemini AI 助理) 所量身打造的整合技能集。
+包含教學簡報製作、課堂公開課影片分析與學校 AI 秘書建立等多元自動化技能。
 
 相較於原始的 Claude Code 版本，此版本針對 Antigravity 進行了以下優化：
 1. **免 API Key 原生生圖**：不再需要設定額外付費的 OpenAI `draw` 腳本，改為呼叫 Antigravity 內建的 `generate_image` 繪圖引擎。
@@ -10,7 +10,7 @@
 
 ---
 
-## 🛠️ 三大教學簡報技能介紹
+## 🛠️ 五大核心技能介紹
 
 本技能集包含三種輸出格式的技能，以滿足不同的教學場景需求：
 
@@ -38,6 +38,18 @@
   - 支援嵌入 **Chart.js** 互動圖表、可點擊表格、CSS 動態效果與 JS 互動。
   - 生圖會透過 Python 自動進行 base64 壓縮並內嵌於網頁中，方便一鍵分享。
 
+### 4. 📹 課堂公開課影片分析與課例研究 (`classroom-video-analyzer`)
+* **觸發關鍵字**：當使用者提供影片網址時（例如 YouTube 連結）
+* **特色**：
+  - 一鍵下載影片音檔（MP3 格式）、使用 Whisper 模型進行本地轉譯，產出具備精確斷句與時間軸的繁體中文/雙語 SRT 字幕及逐字稿。
+  - 基於佐藤學「傾聽、串聯、回歸」觀課對話架構，以及「描述 $\rightarrow$ 詮釋 $\rightarrow$ 反思」三階層分析模型，自動生成至少 12 頁的課例分析簡報與 FB/IG 社群概念圖檔。
+
+### 5. 🤖 學校 AI 秘書建立器 (`school-secretary-builder`)
+* **觸發關鍵字**：自動建立學校秘書、建立學校 AI 秘書等關鍵字
+* **特色**：
+  - 自動爬取指定的學校官方網站，清洗 HTML、去除冗餘欄位，並將核心網頁結構化提取為問答 JSON 資料庫。
+  - 基於乾淨網頁範本（HTML/CSS/JS），自動生成一個支援 Gemini API（與本地 Fallback 機制）的精美響應式 AI 秘書對話機器人，並透過 Headless Mock DOM 進行自動化功能驗證。
+
 ---
 
 ## ⚙️ 技能安裝路徑與依賴
@@ -47,6 +59,18 @@
 ```
 .agents/
 └── skills/
+    ├── classroom-video-analyzer/
+    │   ├── SKILL.md
+    │   └── scripts/
+    │       └── classroom_analyzer_helper.py
+    ├── school-secretary-builder/
+    │   ├── SKILL.md
+    │   ├── scripts/
+    │   │   └── builder_cli.py
+    │   └── templates/
+    │       ├── app.js.template
+    │       ├── index.html.template
+    │       └── styles.css.template
     ├── soil-html-deck/
     │   └── SKILL.md
     ├── soil-image-deck/
@@ -58,11 +82,11 @@
 ```
 
 ### 2. 依賴套件安裝
-在執行簡報打包與 base64 編碼時，您的本地電腦需要準備以下套件：
+在執行簡報打包、轉譯分析與網頁生成時，您的本地電腦需要準備以下套件：
 ```powershell
-# 安裝 Python 依賴（用於處理圖片與打包 PPTX）
-pip install Pillow python-pptx cairosvg pyyaml --break-system-packages
+# 安裝 Python 依賴（簡報打包、影片轉譯、網頁爬蟲與生圖）
+pip install Pillow python-pptx cairosvg pyyaml faster-whisper yt-dlp beautifulsoup4 requests --break-system-packages
 
-# 安裝 Node.js 依賴（用於 PptxGenJS 打包可編輯投影片）
-npm install -g pptxgenjs
+# 安裝 Node.js 依賴（用於 PptxGenJS 與 Mock DOM 測試）
+npm install -g pptxgenjs jsdom
 ```

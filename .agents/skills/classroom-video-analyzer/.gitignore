@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+Thumbs.db
+.git/
+*.pptx
+*.png
+*.txt
+*.mp3
+*.wav
+*.srt
