@@ -10,7 +10,7 @@
 
 ---
 
-## 🛠️ 六大核心技能介紹
+## 🛠️ 五大核心技能介紹
 
 本技能集包含以下核心自動化技能，以滿足不同的教學與管理場景需求：
 
@@ -44,13 +44,7 @@
   - 一鍵下載影片音檔（MP3 格式）、使用 Whisper 模型進行本地轉譯，產出具備精確斷句與時間軸的繁體中文/雙語 SRT 字幕及逐字稿。
   - 基於佐藤學「傾聽、串聯、回歸」觀課對話架構，以及「描述 $\rightarrow$ 詮釋 $\rightarrow$ 反思」三階層分析模型，自動生成至少 12 頁的課例分析簡報與 FB/IG 社群概念圖檔。
 
-### 5. 🤖 學校 AI 秘書建立器 (`school-secretary-builder`)
-* **觸發關鍵字**：自動建立學校秘書、建立學校 AI 秘書等關鍵字
-* **特色**：
-  - 自動爬取指定的學校官方網站，清洗 HTML、去除冗餘欄位，並將核心網頁結構化提取為問答 JSON 資料庫。
-  - 基於乾淨網頁範本（HTML/CSS/JS），自動生成一個支援 Gemini API（與本地 Fallback 機制）的精美響應式 AI 秘書對話機器人，並透過 Headless Mock DOM 進行自動化功能驗證。
-
-### 6. 🚀 GitHub Pages 自動部署與網頁發佈 (`github-pages-deployer`)
+### 5. 🚀 GitHub Pages 自動部署與網頁發佈 (`github-pages-deployer`)
 * **觸發關鍵字**：`發佈網頁到 GitHub`、`部署網頁到 GitHub Pages`、`架設靜態網頁`
 * **特色**：
   - **全自動化架站**：自動偵測專案中的網頁檔案，自動配置 Git 本地倉庫與防衝突設定，並呼叫 GitHub CLI 建立對應的公開儲存庫並推播。
@@ -71,14 +65,6 @@
     │       └── classroom_analyzer_helper.py
     ├── github-pages-deployer/
     │   └── SKILL.md
-    ├── school-secretary-builder/
-    │   ├── SKILL.md
-    │   ├── scripts/
-    │   │   └── builder_cli.py
-    │   └── templates/
-    │       ├── app.js.template
-    │       ├── index.html.template
-    │       └── styles.css.template
     ├── soil-html-deck/
     │   └── SKILL.md
     ├── soil-image-deck/
