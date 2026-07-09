@@ -10,39 +10,35 @@
 
 ---
 
-## 🛠️ 四大核心技能介紹
+## 🛠️ 五大核心技能介紹
 
-本技能集包含以下核心自動化技能，以滿足不同的教學與管理場景需求：
+本專案將 AI 簡報生成系統與全平台連接懶人包完美整合，提供以下五大核心自動化技能：
 
-### 1. 🖼️ SOIL 純圖片教學簡報 (`soil-image-deck`)
-* **觸發關鍵字**：`做純圖片簡報`、`全圖簡報`、`每頁都是 AI 生的圖`
-* **輸出格式**：`.pptx`（每張投影片即是一張全版滿版圖）
+### 1. 📊 SOIL 教學簡報生成系統 (`soil-deck-skills`)
+* **特色**：整合了三種簡報輸出格式，以滿足不同的備課與教學場景需求：
+  - **🖼️ 純圖片簡報 (`soil-image-deck`)**：使用 `generate_image` 逐頁產生「包含標題字與排版」的高品質全版圖像並自動打包成 `.pptx`。適合社群分享與研習暖場。觸發關鍵字：`做純圖片簡報`、`全圖簡報`。
+  - **📝 可編輯簡報 (`soil-teaching-deck`)**：將教學脈絡結構化拆解，文字與圖形分離以利後續修改，並由 AI 自動配圖產生 `.pptx`。適合常規公開課。觸發關鍵字：`幫我做教學簡報`、`用 SOIL 做簡報`。
+  - **🌐 互動網頁簡報 (`soil-html-deck`)**：產生單一可攜式 `.html`，支援 Chart.js 互動圖表、動態轉場與響應式佈局，生圖自動進行 base64 壓縮內嵌。觸發關鍵字：`做 HTML 簡報`、`網頁版簡報`。
+
+### 2. 📓 Google NotebookLM 連接技能
 * **特色**：
-  - 專門應對需要高視覺衝擊的場合（例如：研習暖場、FB/IG 社群分享、YouTube章節過場）。
-  - 使用 `generate_image` 逐頁產生「整頁圖像」（包含排版與繁體中文標題字），並透過 [pack_pptx.py](.agents/skills/soil-image-deck/scripts/pack_pptx.py) 自動打包。
-  - **不適合**後續需要修改文字的場合。
+  - 整合 `notebooklm-mcp-cli` 工具，使 AI 助理可直接檢索、讀取與整理您的 NotebookLM 筆記與外部來源。
+  - 自動處理 Windows 系統下的 CP950 編碼問題，確保資訊擷取與對話的繁體中文穩定性。
 
-### 2. 📝 SOIL 可編輯教學簡報 (`soil-teaching-deck`)
-* **觸發關鍵字**：`幫我做教學簡報`、`做一份上課用的投影片`、`用 SOIL 做簡報`
-* **輸出格式**：`.pptx`（文字可直接在 PowerPoint 中編輯，並內嵌 AI 插圖）
+### 3. 🔥 Firebase 雲端資料庫連接技能
 * **特色**：
-  - 最符合老師日常備課需求的格式。
-  - 將教學脈絡拆分為：**引起動機 (20%)**、**維持注意 (60%)**、**喚起行動 (20%)**。
-  - 每張投影片均有明確的角色（如：問題引入頁、迷思澄清頁、雙欄比較頁），文字與幾何圖形/插畫分離，便於日後編輯。
+  - 整合 `firebase-tools` 管理工具，賦予 AI 助理對 Firebase 進行初始化、資料表讀寫、權限調整與雲端部署的能力。
+  - 自動繞過 Windows PowerShell 執行原則限制，提供穩定無礙的資料庫整合開發環境。
 
-### 3. 🌐 SOIL 互動式網頁簡報 (`soil-html-deck`)
-* **觸發關鍵字**：`做 HTML 簡報`、`網頁版簡報`、`互動式簡報`、`線上簡報`
-* **輸出格式**：單一可攜式 `.html` 檔案
+### 4. 🧠 Obsidian 第二大腦雙向連接
 * **特色**：
-  - 自由度最高的簡報格式，適合線上研習、直播教學或跨裝置（手機/平板）呈現。
-  - 支援嵌入 **Chart.js** 互動圖表、可點擊表格、CSS 動態效果與 JS 互動。
-  - 生圖會透過 Python 自動進行 base64 壓縮並內嵌於網頁中，方便一鍵分享。
+  - 透過 `@bitbonsai/mcpvault` 與本地 Markdown 筆記雙向同步，讓 AI 助理將專案進度、日誌直接記錄於您的 Obsidian 每日筆記中。
+  - 便於實現「Obsidian 規劃任務 $\rightarrow$ AI 助理讀取執行 $\rightarrow$ 自動回報進度」的工作流閉環。
 
-### 4. 🚀 GitHub Pages 自動部署與網頁發佈 (`github-pages-deployer`)
-* **觸發關鍵字**：`發佈網頁到 GitHub`、`部署網頁到 GitHub Pages`、`架設靜態網頁`
+### 5. 🐙 GitHub 連接與 Pages 自動部署 (`github-pages-deployer`)
 * **特色**：
-  - **全自動化架站**：自動偵測專案中的網頁檔案，自動配置 Git 本地倉庫與防衝突設定，並呼叫 GitHub CLI 建立對應的公開儲存庫並推播。
-  - **自動 API 啟用**：透過呼叫 GitHub REST API 一鍵啟用 GitHub Pages 服務，免去手動至 Settings 設定的繁瑣步驟，自動輸出公開存取網址（`https://{owner}.github.io/{repo}/`）。
+  - **GH 帳戶安全授權**：配置 Git 全域使用者資訊與安全 Token 認證。
+  - **一鍵自動架站服務**：自動偵測網頁檔案、建立 GitHub 公開倉庫並推播。同時調用 Pages API 啟用服務，自動生成公開網址（`https://{owner}.github.io/{repo}/`），完成靜態網頁快速部署。
 
 ---
 
@@ -119,7 +115,7 @@ npm install -g pptxgenjs jsdom
 
 ---
 
-### 3. 🎯 連接 GitHub 帳戶
+### 3. 🎯 連接 GitHub 帳戶與 Pages 自動部署
 1. **驗證與登入**：
    使用 GitHub CLI 進行網頁端安全授權：
    ```powershell
@@ -132,6 +128,12 @@ npm install -g pptxgenjs jsdom
    git config --global user.name "您的名字"
    git config --global user.email "您的email@example.com"
    ```
+3. **GitHub Pages 自動化部署 (`github-pages-deployer`)**：
+   啟用本機自訂技能後，當對 AI 助理下達「發佈網頁到 GitHub」時，助理會自動：
+   - 偵測專案中的 HTML/CSS/JS 網頁檔案。
+   - 自動配置 Git 本地倉庫並防範 Google Drive 同步衝突。
+   - 使用 `gh` CLI 建立遠端公開倉庫並推播。
+   - 調用 GitHub Pages API 自動啟用靜態網站託管，並直接輸出網站 URL。
 
 ---
 
