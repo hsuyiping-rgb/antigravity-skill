@@ -10,9 +10,9 @@
 
 ---
 
-## 🛠️ 五大核心技能介紹
+## 🛠️ 六大核心技能介紹
 
-本技能集包含三種輸出格式的技能，以滿足不同的教學場景需求：
+本技能集包含以下核心自動化技能，以滿足不同的教學與管理場景需求：
 
 ### 1. 🖼️ SOIL 純圖片教學簡報 (`soil-image-deck`)
 * **觸發關鍵字**：`做純圖片簡報`、`全圖簡報`、`每頁都是 AI 生的圖`
@@ -50,6 +50,12 @@
   - 自動爬取指定的學校官方網站，清洗 HTML、去除冗餘欄位，並將核心網頁結構化提取為問答 JSON 資料庫。
   - 基於乾淨網頁範本（HTML/CSS/JS），自動生成一個支援 Gemini API（與本地 Fallback 機制）的精美響應式 AI 秘書對話機器人，並透過 Headless Mock DOM 進行自動化功能驗證。
 
+### 6. 🚀 GitHub Pages 自動部署與網頁發佈 (`github-pages-deployer`)
+* **觸發關鍵字**：`發佈網頁到 GitHub`、`部署網頁到 GitHub Pages`、`架設靜態網頁`
+* **特色**：
+  - **全自動化架站**：自動偵測專案中的網頁檔案，自動配置 Git 本地倉庫與防衝突設定，並呼叫 GitHub CLI 建立對應的公開儲存庫並推播。
+  - **自動 API 啟用**：透過呼叫 GitHub REST API 一鍵啟用 GitHub Pages 服務，免去手動至 Settings 設定的繁瑣步驟，自動輸出公開存取網址（`https://{owner}.github.io/{repo}/`）。
+
 ---
 
 ## ⚙️ 技能安裝路徑與依賴
@@ -63,6 +69,8 @@
     │   ├── SKILL.md
     │   └── scripts/
     │       └── classroom_analyzer_helper.py
+    ├── github-pages-deployer/
+    │   └── SKILL.md
     ├── school-secretary-builder/
     │   ├── SKILL.md
     │   ├── scripts/
