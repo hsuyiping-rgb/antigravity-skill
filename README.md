@@ -55,24 +55,30 @@
 ## ⚙️ 技能安裝路徑與依賴
 
 ### 1. 目錄結構
-本技能放置於工作區的自訂技能目錄 `.agents/` 底下：
+專案的主要目錄與檔案結構如下（已成功部署至 GitHub）：
 ```
-.agents/
-└── skills/
-    ├── classroom-video-analyzer/
-    │   ├── SKILL.md
-    │   └── scripts/
-    │       └── classroom_analyzer_helper.py
-    ├── github-pages-deployer/
-    │   └── SKILL.md
-    ├── soil-html-deck/
-    │   └── SKILL.md
-    ├── soil-image-deck/
-    │   ├── SKILL.md
-    │   └── scripts/
-    │       └── pack_pptx.py
-    └── soil-teaching-deck/
-        └── SKILL.md
+├── .agents/
+│   └── skills/
+│       ├── classroom-video-analyzer/
+│       │   ├── SKILL.md
+│       │   └── scripts/
+│       │       └── classroom_analyzer_helper.py
+│       ├── github-pages-deployer/
+│       │   └── SKILL.md
+│       ├── soil-html-deck/
+│       │   └── SKILL.md
+│       ├── soil-image-deck/
+│       │   ├── SKILL.md
+│       │   └── scripts/
+│       │       └── pack_pptx.py
+│       └── soil-teaching-deck/
+│           └── SKILL.md
+├── test-page/
+│   ├── index.html
+│   └── ai_brain_hub.png
+├── 09-AntiGravity專屬懶人包.md
+├── ANTIGRAVITY.md
+└── README.md
 ```
 
 ### 2. 依賴套件安裝
