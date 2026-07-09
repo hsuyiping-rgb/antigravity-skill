@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平平校長的 AI 智慧教學傳送門</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080710;
+            --surface: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a5b4cb;
+            --accent-1: #00f2fe;
+            --accent-2: #4facfe;
+            --accent-purple: #7f00ff;
+            --accent-glow: rgba(0, 242, 254, 0.3);
+            --card-glow: rgba(127, 0, 255, 0.2);
+            --font-outfit: 'Outfit', 'Noto Sans TC', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-outfit);
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(127, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.15) 0%, transparent 40%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 背景微光動畫 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        main {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem 4rem 2rem;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 2fr 1.2fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 玻璃擬態卡片基礎 */
+        .glass-card {
+            background: var(--surface);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.6s;
+            pointer-events: none;
+        }
+
+        .glass-card:hover::before {
+            left: 150%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 
+                0 10px 30px -10px rgba(0, 0, 0, 0.5),
+                0 0 20px 0px var(--card-glow);
+        }
+
+        .hero-banner {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            background: linear-gradient(135deg, rgba(127, 0, 255, 0.1), rgba(0, 242, 254, 0.05));
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+        }
+
+        .hero-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            flex-shrink: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent-1);
+            box-shadow: 0 0 25px var(--accent-glow);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* 技能展示區 */
+        .skills-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-1);
+            padding-left: 12px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-icon {
+            font-size: 1.8rem;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .skill-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-launch {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-purple));
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-launch:hover {
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* 互動式任務板 */
+        .task-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+
+        .task-section h3 {
+            font-size: 1.5rem;
+            border-left: 4px solid var(--accent-purple);
+            padding-left: 12px;
+        }
+
+        .task-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .task-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .task-input:focus {
+            border-color: var(--accent-2);
+        }
+
+        .btn-add {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-1);
+        }
+
+        .task-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* 自訂滾動條 */
+        .task-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .task-list::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .task-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .task-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .task-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .task-checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-secondary);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .task-checkbox:checked {
+            background-color: var(--accent-1);
+            border-color: var(--accent-1);
+        }
+
+        .task-checkbox:checked::before {
+            content: '✓';
+            color: var(--bg);
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        .task-text {
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .completed .task-text {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .btn-delete {
+            background: transparent;
+            border: none;
+            color: #ff4a4a;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .btn-delete:hover {
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 動畫定義 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <span class="logo-icon">🌌</span>
+            <h1>平平校長的 AI 智慧教學傳送門</h1>
+        </div>
+        <p>基於 Antigravity AI 代理人所驅動的教師數位智慧工具箱</p>
+    </header>
+
+    <main>
+        <!-- 頂部宣傳卡片 -->
+        <section class="glass-card hero-banner">
+            <div class="hero-text">
+                <h2>探索智慧教學的無限可能</h2>
+                <p>本平台已整合並部署多項專屬教學助理（Agent Skills）。透過將靜態網頁發佈至 GitHub Pages，實現全自動的班級行政管理與教學輔助。歡迎在此模擬您的每日備課任務與教學排程！</p>
+                <button class="btn-launch" onclick="alert('歡迎來到 AI 教學傳送門！這是一個部署在 GitHub Pages 的演示網頁。')">了解更多</button>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="./ai_brain_hub.png" alt="AI Brain Hub" class="hero-image" onerror="this.src='https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=300&q=80'">
+            </div>
+        </section>
+
+        <!-- 技能卡片區 -->
+        <section class="glass-card skills-section">
+            <h3>我的智慧教學工具集</h3>
+            <div class="skills-grid">
+                <div class="glass-card skill-card">
+                    <div>
+                        <div class="skill-header">
+                            <span class="skill-icon">🎯</span>
+                            <h4 class="skill-title">座標獵人</h4>
+                        </div>
+                        <p class="skill-desc">專為國中小學設計的直角座標遊戲。透過粉筆黑板風格的棋盤練習，讓學生在限時內找出座標點以獲取高分。</p>
+                    </div>
+                    <button class="btn-launch" onclick="alert('即將啟動座標獵人遊戲...')">模擬啟動</button>
+                </div>
+
+                <div class="glass-card skill-card">
+                    <div>
+                        <div class="skill-header">
+                            <span class="skill-icon">🎥</span>
+                            <h4 class="skill-title">觀課影片分析師</h4>
+                        </div>
+                        <p class="skill-desc">自動分析課堂實錄影片。提取音檔、轉譯生成 srt 字幕，並結合 NotebookLM 知識庫輸出精美校長審查 Word 報告。</p>
+                    </div>
+                    <button class="btn-launch" onclick="alert('即將分析觀課影片與生成 docx 報告...')">觀課分析</button>
+                </div>
+
+                <div class="glass-card skill-card">
+                    <div>
+                        <div class="skill-header">
+                            <span class="skill-icon">📈</span>
+                            <h4 class="skill-title">波段操作教練</h4>
+                        </div>
+                        <p class="skill-desc">提供台股與美股的波段操作邏輯演練與策略模擬，以互動式的策略分析輔助理財課堂教學實踐。</p>
+                    </div>
+                    <button class="btn-launch" onclick="alert('即將開啟波段操作理財教練...')">策略模擬</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 互動式任務板 -->
+        <section class="glass-card task-section">
+            <h3>今日備課與教學任務</h3>
+            <div class="task-input-group">
+                <input type="text" id="taskInput" class="task-input" placeholder="新增今日備課任務..." onkeypress="handleKeyPress(event)">
+                <button class="btn-add" onclick="addTask()">新增</button>
+            </div>
+            <ul id="taskList" class="task-list">
+                <!-- 動態新增的任務 -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 平平校長的 AI 智慧教學傳送門 | Powered by Antigravity & GitHub Pages</p>
+    </footer>
+
+    <script>
+        // 初始化任務列表
+        let tasks = JSON.parse(localStorage.getItem('teaching_tasks')) || [
+            { text: '規劃「直角座標獵人」班級限時挑戰賽', completed: false },
+            { text: '使用 classroom-video-analyzer 轉譯化學觀課影片', completed: true },
+            { text: '將最新修正的部署工具技能發佈至 GitHub', completed: false }
+        ];
+
+        function renderTasks() {
+            const list = document.getElementById('taskList');
+            list.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                li.innerHTML = `
+                    <div class="task-content" onclick="toggleTask(${index})">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">${task.text}</span>
+                    </div>
+                    <button class="btn-delete" onclick="event.stopPropagation(); deleteTask(${index})">✕</button>
+                `;
+                list.appendChild(li);
+            });
+            localStorage.setItem('teaching_tasks', JSON.stringify(tasks));
+        }
+
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const text = input.value.trim();
+            if (text) {
+                tasks.unshift({ text: text, completed: false });
+                input.value = '';
+                renderTasks();
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        }
+
+        function toggleTask(index) {
+            tasks[index].completed = !tasks[index].completed;
+            renderTasks();
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+        }
+
+        // 首次載入渲染
+        renderTasks();
+    </script>
+</body>
+</html>
