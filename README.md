@@ -1,7 +1,7 @@
 # 🌌 Antigravity 專用教學與自動化技能集 (Antigravity Skills)
 
 本專案是專為 **Antigravity** (Gemini AI 助理) 所量身打造的整合技能集。
-包含教學簡報製作、課堂公開課影片分析與學校 AI 秘書建立等多元自動化技能。
+包含教學簡報製作、GitHub Pages 自動部署發佈等多元自動化技能。
 
 相較於原始的 Claude Code 版本，此版本針對 Antigravity 進行了以下優化：
 1. **免 API Key 原生生圖**：不再需要設定額外付費的 OpenAI `draw` 腳本，改為呼叫 Antigravity 內建的 `generate_image` 繪圖引擎。
@@ -10,7 +10,7 @@
 
 ---
 
-## 🛠️ 五大核心技能介紹
+## 🛠️ 四大核心技能介紹
 
 本技能集包含以下核心自動化技能，以滿足不同的教學與管理場景需求：
 
@@ -38,13 +38,7 @@
   - 支援嵌入 **Chart.js** 互動圖表、可點擊表格、CSS 動態效果與 JS 互動。
   - 生圖會透過 Python 自動進行 base64 壓縮並內嵌於網頁中，方便一鍵分享。
 
-### 4. 📹 課堂公開課影片分析與課例研究 (`classroom-video-analyzer`)
-* **觸發關鍵字**：當使用者提供影片網址時（例如 YouTube 連結）
-* **特色**：
-  - 一鍵下載影片音檔（MP3 格式）、使用 Whisper 模型進行本地轉譯，產出具備精確斷句與時間軸的繁體中文/雙語 SRT 字幕及逐字稿。
-  - 基於佐藤學「傾聽、串聯、回歸」觀課對話架構，以及「描述 $\rightarrow$ 詮釋 $\rightarrow$ 反思」三階層分析模型，自動生成至少 12 頁的課例分析簡報與 FB/IG 社群概念圖檔。
-
-### 5. 🚀 GitHub Pages 自動部署與網頁發佈 (`github-pages-deployer`)
+### 4. 🚀 GitHub Pages 自動部署與網頁發佈 (`github-pages-deployer`)
 * **觸發關鍵字**：`發佈網頁到 GitHub`、`部署網頁到 GitHub Pages`、`架設靜態網頁`
 * **特色**：
   - **全自動化架站**：自動偵測專案中的網頁檔案，自動配置 Git 本地倉庫與防衝突設定，並呼叫 GitHub CLI 建立對應的公開儲存庫並推播。
@@ -59,10 +53,6 @@
 ```
 ├── .agents/
 │   └── skills/
-│       ├── classroom-video-analyzer/
-│       │   ├── SKILL.md
-│       │   └── scripts/
-│       │       └── classroom_analyzer_helper.py
 │       ├── github-pages-deployer/
 │       │   └── SKILL.md
 │       ├── soil-html-deck/
