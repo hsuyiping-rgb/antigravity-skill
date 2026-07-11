@@ -63,10 +63,6 @@
 │   └── skills/
 │       ├── github-pages-deployer/
 │       │   └── SKILL.md
-│       ├── slc-skill/
-│       │   ├── SKILL.md
-│       │   └── scripts/
-│       │       └── classroom_analyzer_helper.py
 │       ├── soil-html-deck/
 │       │   └── SKILL.md
 │       ├── soil-image-deck/
