@@ -10,9 +10,9 @@
 
 ---
 
-## 🛠️ 六大核心技能介紹
+## 🛠️ 七大核心技能介紹
 
-本專案將 AI 簡報生成系統與全平台連接懶人包完美整合，提供以下六大核心自動化技能：
+本專案將 AI 簡報生成系統、公開課課例探究與全平台連接懶人包完美整合，提供以下七大核心自動化技能：
 
 ### 1. 📊 SOIL 教學簡報生成系統 (`soil-deck-skills`)
 * **特色**：整合了三種簡報輸出格式，以滿足不同的備課與教學場景需求：
@@ -20,27 +20,33 @@
   - **📝 可編輯簡報 (`soil-teaching-deck`)**：將教學脈絡結構化拆解，文字與圖形分離以利後續修改，並由 AI 自動配圖產生 `.pptx`。適合常規公開課。觸發關鍵字：`幫我做教學簡報`、`用 SOIL 做簡報`。
   - **🌐 互動網頁簡報 (`soil-html-deck`)**：產生單一可攜式 `.html`，支援 Chart.js 互動圖表、動態轉場與響應式佈局，生圖自動進行 base64 壓縮內嵌。觸發關鍵字：`做 HTML 簡報`、`網頁版簡報`。
 
-### 2. 📓 Google NotebookLM 連接技能
+### 2. 📹 學習共同體課例探究與簡報生成 (`slc-skill`)
+* **特色**：針對公開課影片（如 YouTube 影片）的端到端自動化課例研究工作流：
+  - **影片下載與轉譯**：語意化判斷段落，自動下載影片並使用 Whisper 轉譯為繁體中文字幕（SRT）與逐字稿。
+  - **擷圖二次確認與重繪**：精確根據逐字稿語境段落擷取關鍵畫格，並**主動提示供使用者二次確認**滿意後，再使用生圖工具重繪成高品質插圖。
+  - **15-20 頁雙格式輸出**：動態將投影片數量規劃在 15-20 頁之間，產出可編輯文字的 PPTX 簡報與專為平板/手機設計的 Touch Swipe 響應式 HTML 互動網頁簡報。
+
+### 3. 📓 Google NotebookLM 連接技能
 * **特色**：
   - 整合 `notebooklm-mcp-cli` 工具，使 AI 助理可直接檢索、讀取與整理您的 NotebookLM 筆記與外部來源。
   - 自動處理 Windows 系統下的 CP950 編碼問題，確保資訊擷取與對話的繁體中文穩定性。
 
-### 3. 🔥 Firebase 雲端資料庫連接技能
+### 4. 🔥 Firebase 雲端資料庫連接技能
 * **特色**：
   - 整合 `firebase-tools` 管理工具，賦予 AI 助理對 Firebase 進行初始化、資料表讀寫、權限調整與雲端部署的能力。
   - 自動繞過 Windows PowerShell 執行原則限制，提供穩定無礙的資料庫整合開發環境。
 
-### 4. 🧠 Obsidian 第二大腦雙向連接
+### 5. 🧠 Obsidian 第二大腦雙向連接
 * **特色**：
   - 透過 `@bitbonsai/mcpvault` 與本地 Markdown 筆記雙向同步，讓 AI 助理將專案進度、日誌直接記錄於您的 Obsidian 每日筆記中。
   - 便於實現「Obsidian 規劃任務 $\rightarrow$ AI 助理讀取執行 $\rightarrow$ 自動回報進度」的工作流閉環。
 
-### 5. 🐙 GitHub 連接與 Pages 自動部署 (`github-pages-deployer`)
+### 6. 🐙 GitHub 連接與 Pages 自動部署 (`github-pages-deployer`)
 * **特色**：
   - **GH 帳戶安全授權**：配置 Git 全域使用者資訊與安全 Token 認證。
   - **一鍵自動架站服務**：自動偵測網頁檔案、建立 GitHub 公開倉庫並推播。同時調用 Pages API 啟用服務，自動生成公開網址（`https://{owner}.github.io/{repo}/`），完成靜態網頁快速部署。
 
-### 6. 🟢 專案自動化 SOP 工作流 (`ANTIGRAVITY.md`)
+### 7. 🟢 專案自動化 SOP 工作流 (`ANTIGRAVITY.md`)
 * **特色**：當您在對話中對 AI 助理說出關鍵字時，將會自動觸發定義於 `ANTIGRAVITY.md` 專案駕駛艙中的自動化 SOP 工作流：
   - **🟢 說「開工」或「我來了」時**：自動確認 Git 倉庫狀態、同步遠端變更、從設定的每日筆記目錄中讀取「上次做到哪」與「下一步計畫」，並給出今日的第一步具體行動建議。
   - **🔴 說「收工」或「下班了」時**：自動進行資安防護掃描（確保金鑰無外洩風險）、自動執行 Git commit 與 push、並在 Obsidian 每日筆記中寫入今日的「已完成工作」與「留待明日待辦事項」。
@@ -57,6 +63,10 @@
 │   └── skills/
 │       ├── github-pages-deployer/
 │       │   └── SKILL.md
+│       ├── slc-skill/
+│       │   ├── SKILL.md
+│       │   └── scripts/
+│       │       └── classroom_analyzer_helper.py
 │       ├── soil-html-deck/
 │       │   └── SKILL.md
 │       ├── soil-image-deck/
