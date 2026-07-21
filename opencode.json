@@ -1,0 +1,13 @@
+{
+  "mcp": {
+    "obsidian": {
+      "type": "local",
+      "command": [
+        "npx",
+        "@bitbonsai/mcpvault",
+        "G:\\我的雲端硬碟\\secondbrain"
+      ],
+      "enabled": true
+    }
+  }
+}

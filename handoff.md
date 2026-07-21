@@ -3,23 +3,22 @@
 > 任何 Agent、任何電腦接手前**必讀**；收工時**必更新**。本檔只放交接必需的精簡資訊，詳細脈絡放 Obsidian（若有 L3）。
 
 ## ⏯️ 目前做到哪
-* 成功完成 `claude-code-lazy-packs`、`cross-device-agent-skills` 和 `yaml-image-deck` 所有自訂技能的轉換與本機全域安裝。
-* 將這 16 個經過轉換的技能包拷貝至專案的 `.agents/skills/` 中，完成了 Anti-Gravity 環境設置包的打包。
-* 重構並更新了 `README.md`，列出了完整的 20 個技能，並已將所有變更 push 至 GitHub 遠端倉庫。
+* 本機成功將專案中 20 個自訂技能全域安裝為 Antigravity 的 Plugin，任何人與任何目錄皆可呼叫。
+* 成功完成 `ag-install-all` 一鍵全部安裝：建置好本機 Node.js (v26.4.0)、全域 npm 依賴 (`pptxgenjs`, `jsdom`, `@supabase/mcp-server-supabase`)、Python 依賴、以及與 NotebookLM、GitHub、Obsidian 的全套連線。
+* 於專案根目錄建立了 `opencode.json`，將 Obsidian 連接指向實體路徑 `G:\我的雲端硬碟\secondbrain`。
 
 ## 🚦 目前狀態
-* 倉庫狀態為 Clean，所有變更已上傳。
-* 本地自訂技能資料夾中已包含 20 個已驗證可用的技能。
+* 運行環境與全域技能已完全配置並驗證成功，目前專案 Git 狀態有新檔案（`opencode.json` 等）待同步。
 
 ## ➡️ 下一步
 1. 下次開工時，直接對助理說「開工」或「我來了」即可讀取此交接檔案。
-2. 可利用 `ag-project-init` (初始化專案) 開啟新專案，或使用 `yaml-image-deck` 製作簡報。
+2. 可利用「製作 YAML 簡報」或「做純圖片簡報」測試簡報生圖引擎是否正常。
+3. (選用) 在 AI Studio 申請免費 API key 並建立 `~/.gemini.env` 檔供 API 技能使用。
 
 ## ⚠️ 注意事項
-* 本地 Git 已全域與單一倉庫配置 `windows.appendAtomically false`，此為 Google Drive 環境中運行 Git 的必要防衝突設定。
-* `ag-draw` 生圖技能已原生改用 Antigravity 內建免費的 `generate_image` 繪圖引擎，不需要再配置付費 OpenAI API 金鑰。
+* 本次安裝使用了 `winget` 來配置本機 Node.js & npm。如果未來執行時出現指令找不到，請重開終端機或重載助理以重新讀取最新 PATH 環境變數。
 
 ## 🕐 最後更新
-- 時間：2026-07-21 20:10
-- 更新者：Antigravity @ DESKTOP-31QBU95
-- Git push：✅ 已推
+- 時間：2026-07-21 20:30
+- 更新者：Antigravity @ KFES
+- Git push：待推

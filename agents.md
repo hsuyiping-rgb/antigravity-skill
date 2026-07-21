@@ -21,6 +21,7 @@
 * `09-AntiGravity專屬懶人包.md` - 全平台服務連線指南
 * `10-AntiGravity專屬懶人包-跨電腦專案與YAML簡報生圖.md` - 專案管理與 YAML 簡報指南
 * `ANTIGRAVITY.md` - 專案駕駛艙與關鍵字觸發配置
+* `opencode.json` - 本地專案專屬的 MCP 伺服器設定檔
 * `README.md` - 專案總覽與全技能樹狀圖
 
 ## 同步層級（本專案初始化至第 L3 層級）
