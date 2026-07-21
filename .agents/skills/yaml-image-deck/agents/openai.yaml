@@ -1,0 +1,5 @@
+interface:
+  display_name: "YAML Image Deck"
+  short_description: "以 YAML 規格鎖定風格與版型，批次生成一致的圖片式簡報"
+  default_prompt: "Use $yaml-image-deck to turn this topic into a consistent YAML-driven image deck."
+

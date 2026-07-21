@@ -1,0 +1,75 @@
+schema_version: "yaml_image_deck_v1"
+
+deck:
+  title: "Example image deck"
+  audience: "General audience"
+  purpose: "Explain one idea clearly"
+  takeaway: "Consistency comes from visual grammar"
+  language: "zh-TW"
+  output_mode: "baked"
+  planning_mode: "yaml_spec"
+  generation_strategy: "sequential"
+  style_lock: "golden_sample"
+  slide_count: 3
+
+canvas:
+  target_ratio: "16:9"
+  safe_area_pct: {left: 6, right: 6, top: 10, bottom: 10}
+
+design_system:
+  visual_direction: "Warm editorial educational infographic"
+  palette:
+    background: "#F5F1E8"
+    primary: "#176B87"
+    highlight: "#F4A261"
+    text: "#173042"
+  typography:
+    font_feel: "粗圓、飽滿、低稜角的繁體中文無襯線字"
+    avoid: "尖角、窄長、機械感、科技模板字"
+    plate_font_preferences:
+      - "jf open 粉圓 2.1"
+      - "GenSenRounded TW"
+      - "GenJyuuGothic"
+  style_reference: "slides/images/page_02.png"
+  negative_prompt:
+    - "不要 Logo 或浮水印"
+    - "不要未指定文字"
+    - "不要螢幕、投影幕或簡報 mockup"
+
+layout_router:
+  focus: "cover_hero"
+  hierarchy: "relationship_map"
+  synthesis: "summary_three"
+
+slides:
+  - page: 1
+    role: "cover"
+    core_point: "Introduce the central idea"
+    semantic_structure: "focus"
+    layout: {id: "cover_hero", variant: "left_title_right_visual"}
+    visible_text: {title: "設計先有語法"}
+    visual: "A visual system blueprint unfolding into several coordinated slides"
+    output: "slides/images/page_01.png"
+  - page: 2
+    role: "relationship"
+    core_point: "Show the system layers"
+    semantic_structure: "hierarchy"
+    layout: {id: "relationship_map", variant: "three_layer_stack"}
+    visible_text: {title: "三層一起工作", labels: ["骨架", "版型", "內容"]}
+    visual: "Three tactile layers connected into one finished slide"
+    output: "slides/images/page_02.png"
+  - page: 3
+    role: "summary"
+    core_point: "Close with a reusable principle"
+    semantic_structure: "synthesis"
+    layout: {id: "summary_three", variant: "center_statement"}
+    visible_text: {title: "一致但不重複"}
+    visual: "Different slide silhouettes connected by one shared visual grammar"
+    output: "slides/images/page_03.png"
+
+validation:
+  regenerate_on:
+    - "文字錯誤"
+    - "字體不夠粗圓"
+    - "版型或風格漂移"
+
